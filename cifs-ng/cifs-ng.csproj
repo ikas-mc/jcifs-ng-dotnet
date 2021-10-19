@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B536306B-19CD-4F53-8A27-BA769D214E5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>cifs_ng</RootNamespace>
+    <AssemblyName>cifs-ng</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="jcifs\ACE.cs" />
+    <Compile Include="jcifs\Address.cs" />
+    <Compile Include="jcifs\BufferCache.cs" />
+    <Compile Include="jcifs\CIFSContext.cs" />
+    <Compile Include="jcifs\CIFSException.cs" />
+    <Compile Include="jcifs\CIFSUnsupportedCryptoException.cs" />
+    <Compile Include="jcifs\CloseableIterator.cs" />
+    <Compile Include="jcifs\Config.cs" />
+    <Compile Include="jcifs\Configuration.cs" />
+    <Compile Include="jcifs\config\BaseConfiguration.cs" />
+    <Compile Include="jcifs\config\DelegatingConfiguration.cs" />
+    <Compile Include="jcifs\config\PropertyConfiguration.cs" />
+    <Compile Include="jcifs\context\AbstractCIFSContext.cs" />
+    <Compile Include="jcifs\context\BaseContext.cs" />
+    <Compile Include="jcifs\context\CIFSContextCredentialWrapper.cs" />
+    <Compile Include="jcifs\context\CIFSContextWrapper.cs" />
+    <Compile Include="jcifs\context\SingletonContext.cs" />
+    <Compile Include="jcifs\Credentials.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcBind.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcBinding.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcConstants.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcError.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcException.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcHandle.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcMessage.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcPipeHandle.cs" />
+    <Compile Include="jcifs\dcerpc\DcerpcSecurityProvider.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\LsaPolicyHandle.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\lsarpc.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\LsarSidArrayX.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcDfsRootEnum.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcEnumerateAliasesInDomain.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcGetMembersInAlias.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcLookupSids.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcLsarClose.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcLsarOpenPolicy2.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcQueryInformationPolicy.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcSamrCloseHandle.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcSamrConnect2.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcSamrConnect4.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcSamrOpenAlias.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcSamrOpenDomain.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcShareEnum.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\MsrpcShareGetInfo.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\netdfs.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\samr.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\SamrAliasHandle.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\SamrDomainHandle.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\SamrPolicyHandle.cs" />
+    <Compile Include="jcifs\dcerpc\msrpc\srvsvc.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrBuffer.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrException.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrHyper.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrLong.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrObject.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrShort.cs" />
+    <Compile Include="jcifs\dcerpc\ndr\NdrSmall.cs" />
+    <Compile Include="jcifs\dcerpc\rpc.cs" />
+    <Compile Include="jcifs\dcerpc\UnicodeString.cs" />
+    <Compile Include="jcifs\dcerpc\UUID.cs" />
+    <Compile Include="jcifs\Decodable.cs" />
+    <Compile Include="jcifs\DfsReferralData.cs" />
+    <Compile Include="jcifs\DfsResolver.cs" />
+    <Compile Include="jcifs\DialectVersion.cs" />
+    <Compile Include="jcifs\EmptyIterator.cs" />
+    <Compile Include="jcifs\Encodable.cs" />
+    <Compile Include="jcifs\FileNotifyInformation.cs" />
+    <Compile Include="jcifs\internal\AllocInfo.cs" />
+    <Compile Include="jcifs\internal\CommonServerMessageBlock.cs" />
+    <Compile Include="jcifs\internal\CommonServerMessageBlockRequest.cs" />
+    <Compile Include="jcifs\internal\CommonServerMessageBlockResponse.cs" />
+    <Compile Include="jcifs\internal\dfs\DfsReferralDataImpl.cs" />
+    <Compile Include="jcifs\internal\dfs\DfsReferralDataInternal.cs" />
+    <Compile Include="jcifs\internal\dfs\DfsReferralRequestBuffer.cs" />
+    <Compile Include="jcifs\internal\dfs\DfsReferralResponseBuffer.cs" />
+    <Compile Include="jcifs\internal\dfs\Referral.cs" />
+    <Compile Include="jcifs\internal\dtyp\ACE.cs" />
+    <Compile Include="jcifs\internal\dtyp\SecurityDescriptor.cs" />
+    <Compile Include="jcifs\internal\dtyp\SecurityInfo.cs" />
+    <Compile Include="jcifs\internal\fscc\BasicFileInformation.cs" />
+    <Compile Include="jcifs\internal\fscc\FileBasicInfo.cs" />
+    <Compile Include="jcifs\internal\fscc\FileBothDirectoryInfo.cs" />
+    <Compile Include="jcifs\internal\fscc\FileEndOfFileInformation.cs" />
+    <Compile Include="jcifs\internal\fscc\FileFsFullSizeInformation.cs" />
+    <Compile Include="jcifs\internal\fscc\FileFsSizeInformation.cs" />
+    <Compile Include="jcifs\internal\fscc\FileInformation.cs" />
+    <Compile Include="jcifs\internal\fscc\FileInternalInfo.cs" />
+    <Compile Include="jcifs\internal\fscc\FileRenameInformation2.cs" />
+    <Compile Include="jcifs\internal\fscc\FileStandardInfo.cs" />
+    <Compile Include="jcifs\internal\fscc\FileSystemInformation.cs" />
+    <Compile Include="jcifs\internal\fscc\FsctlPipeWaitRequest.cs" />
+    <Compile Include="jcifs\internal\fscc\SmbInfoAllocation.cs" />
+    <Compile Include="jcifs\internal\NotifyResponse.cs" />
+    <Compile Include="jcifs\internal\Request.cs" />
+    <Compile Include="jcifs\internal\RequestWithPath.cs" />
+    <Compile Include="jcifs\internal\smb1\AndXServerMessageBlock.cs" />
+    <Compile Include="jcifs\internal\smb1\com\LockingAndXRange.cs" />
+    <Compile Include="jcifs\internal\smb1\com\ServerData.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComBlankResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComClose.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComCreateDirectory.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComDelete.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComDeleteDirectory.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComFindClose2.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComLockingAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComLogoffAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComNegotiate.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComNegotiateResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComNTCreateAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComNTCreateAndXResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComOpenAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComOpenAndXResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComQueryInformation.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComQueryInformationResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComReadAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComReadAndXResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComRename.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComSeek.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComSeekResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComSessionSetupAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComSessionSetupAndXResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComSetInformation.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComSetInformationResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComTreeConnectAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComTreeConnectAndXResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComTreeDisconnect.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComWrite.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComWriteAndX.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComWriteAndXResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\com\SmbComWriteResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\net\NetServerEnum2.cs" />
+    <Compile Include="jcifs\internal\smb1\net\NetServerEnum2Response.cs" />
+    <Compile Include="jcifs\internal\smb1\net\NetShareEnum.cs" />
+    <Compile Include="jcifs\internal\smb1\net\NetShareEnumResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\net\SmbShareInfo.cs" />
+    <Compile Include="jcifs\internal\smb1\ServerMessageBlock.cs" />
+    <Compile Include="jcifs\internal\smb1\SMB1SigningDigest.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2FindFirst2.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2FindFirst2Response.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2FindNext2.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2GetDfsReferral.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2GetDfsReferralResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2QueryFSInformation.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2QueryFSInformationResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2QueryPathInformation.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2QueryPathInformationResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2SetFileInformation.cs" />
+    <Compile Include="jcifs\internal\smb1\trans2\Trans2SetFileInformationResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\FileNotifyInformationImpl.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\NtTransNotifyChange.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\NtTransNotifyChangeResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\NtTransQuerySecurityDesc.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\NtTransQuerySecurityDescResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\SmbComNtCancel.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\SmbComNtTransaction.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\nt\SmbComNtTransactionResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\SmbComTransaction.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\SmbComTransactionResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransCallNamedPipe.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransCallNamedPipeResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransPeekNamedPipe.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransPeekNamedPipeResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransTransactNamedPipe.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransTransactNamedPipeResponse.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransWaitNamedPipe.cs" />
+    <Compile Include="jcifs\internal\smb1\trans\TransWaitNamedPipeResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\create\CreateContextRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\create\CreateContextResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\create\Smb2CloseRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\create\Smb2CloseResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\create\Smb2CreateRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\create\Smb2CreateResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\info\Smb2QueryDirectoryRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\info\Smb2QueryDirectoryResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\info\Smb2QueryInfoRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\info\Smb2QueryInfoResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\info\Smb2SetInfoRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\info\Smb2SetInfoResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\Smb2IoctlRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\Smb2IoctlResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\SrvCopychunk.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\SrvCopychunkCopy.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\SrvCopyChunkCopyResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\SrvPipePeekResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\SrvRequestResumeKeyResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\ValidateNegotiateInfoRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\ioctl\ValidateNegotiateInfoResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\io\Smb2FlushRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\io\Smb2FlushResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\io\Smb2ReadRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\io\Smb2ReadResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\io\Smb2WriteRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\io\Smb2WriteResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\lock\Smb2Lock.cs" />
+    <Compile Include="jcifs\internal\smb2\lock\Smb2LockRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\lock\Smb2LockResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\lock\Smb2OplockBreakNotification.cs" />
+    <Compile Include="jcifs\internal\smb2\nego\EncryptionNegotiateContext.cs" />
+    <Compile Include="jcifs\internal\smb2\nego\NegotiateContextRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\nego\NegotiateContextResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\nego\PreauthIntegrityNegotiateContext.cs" />
+    <Compile Include="jcifs\internal\smb2\nego\Smb2NegotiateRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\nego\Smb2NegotiateResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\notify\Smb2ChangeNotifyRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\notify\Smb2ChangeNotifyResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\RequestWithFileId.cs" />
+    <Compile Include="jcifs\internal\smb2\ServerMessageBlock2.cs" />
+    <Compile Include="jcifs\internal\smb2\ServerMessageBlock2Request.cs" />
+    <Compile Include="jcifs\internal\smb2\ServerMessageBlock2Response.cs" />
+    <Compile Include="jcifs\internal\smb2\session\Smb2LogoffRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\session\Smb2LogoffResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\session\Smb2SessionSetupRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\session\Smb2SessionSetupResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\Smb2CancelRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\Smb2Constants.cs" />
+    <Compile Include="jcifs\internal\smb2\Smb2EchoRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\Smb2EchoResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\Smb2SigningDigest.cs" />
+    <Compile Include="jcifs\internal\smb2\Smb3KeyDerivation.cs" />
+    <Compile Include="jcifs\internal\smb2\tree\Smb2TreeConnectRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\tree\Smb2TreeConnectResponse.cs" />
+    <Compile Include="jcifs\internal\smb2\tree\Smb2TreeDisconnectRequest.cs" />
+    <Compile Include="jcifs\internal\smb2\tree\Smb2TreeDisconnectResponse.cs" />
+    <Compile Include="jcifs\internal\SmbBasicFileInfo.cs" />
+    <Compile Include="jcifs\internal\SmbNegotiation.cs" />
+    <Compile Include="jcifs\internal\SmbNegotiationRequest.cs" />
+    <Compile Include="jcifs\internal\SmbNegotiationResponse.cs" />
+    <Compile Include="jcifs\internal\SMBProtocolDecodingException.cs" />
+    <Compile Include="jcifs\internal\SMBSigningDigest.cs" />
+    <Compile Include="jcifs\internal\TreeConnectResponse.cs" />
+    <Compile Include="jcifs\internal\util\SMBUtil.cs" />
+    <Compile Include="jcifs\internal\util\StringUtil.cs" />
+    <Compile Include="jcifs\NameServiceClient.cs" />
+    <Compile Include="jcifs\NetbiosAddress.cs" />
+    <Compile Include="jcifs\NetbiosName.cs" />
+    <Compile Include="jcifs\netbios\Lmhosts.cs" />
+    <Compile Include="jcifs\netbios\Name.cs" />
+    <Compile Include="jcifs\netbios\NameQueryRequest.cs" />
+    <Compile Include="jcifs\netbios\NameQueryResponse.cs" />
+    <Compile Include="jcifs\netbios\NameServiceClientImpl.cs" />
+    <Compile Include="jcifs\netbios\NameServicePacket.cs" />
+    <Compile Include="jcifs\netbios\NbtAddress.cs" />
+    <Compile Include="jcifs\netbios\NbtException.cs" />
+    <Compile Include="jcifs\netbios\NodeStatusRequest.cs" />
+    <Compile Include="jcifs\netbios\NodeStatusResponse.cs" />
+    <Compile Include="jcifs\netbios\SessionRequestPacket.cs" />
+    <Compile Include="jcifs\netbios\SessionRetargetResponsePacket.cs" />
+    <Compile Include="jcifs\netbios\SessionServicePacket.cs" />
+    <Compile Include="jcifs\netbios\UniAddress.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvChannelBindings.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvFlags.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvPair.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvPairs.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvSingleHost.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvTargetName.cs" />
+    <Compile Include="jcifs\ntlmssp\av\AvTimestamp.cs" />
+    <Compile Include="jcifs\ntlmssp\NtlmFlags.cs" />
+    <Compile Include="jcifs\ntlmssp\NtlmMessage.cs" />
+    <Compile Include="jcifs\ntlmssp\Type1Message.cs" />
+    <Compile Include="jcifs\ntlmssp\Type2Message.cs" />
+    <Compile Include="jcifs\ntlmssp\Type3Message.cs" />
+    <Compile Include="jcifs\ResolverType.cs" />
+    <Compile Include="jcifs\ResourceFilter.cs" />
+    <Compile Include="jcifs\ResourceNameFilter.cs" />
+    <Compile Include="jcifs\RuntimeCIFSException.cs" />
+    <Compile Include="jcifs\SID.cs" />
+    <Compile Include="jcifs\SidResolver.cs" />
+    <Compile Include="jcifs\SmbConstants.cs" />
+    <Compile Include="jcifs\SmbFileHandle.cs" />
+    <Compile Include="jcifs\SmbPipeHandle.cs" />
+    <Compile Include="jcifs\SmbPipeResource.cs" />
+    <Compile Include="jcifs\SmbRandomAccess.cs" />
+    <Compile Include="jcifs\SmbResource.cs" />
+    <Compile Include="jcifs\SmbResourceLocator.cs" />
+    <Compile Include="jcifs\SmbSession.cs" />
+    <Compile Include="jcifs\SmbTransport.cs" />
+    <Compile Include="jcifs\SmbTransportPool.cs" />
+    <Compile Include="jcifs\SmbTree.cs" />
+    <Compile Include="jcifs\SmbTreeHandle.cs" />
+    <Compile Include="jcifs\SmbWatchHandle.cs" />
+    <Compile Include="jcifs\smb\BufferCacheImpl.cs" />
+    <Compile Include="jcifs\smb\CredentialsInternal.cs" />
+    <Compile Include="jcifs\smb\DfsImpl.cs" />
+    <Compile Include="jcifs\smb\DfsReferral.cs" />
+    <Compile Include="jcifs\smb\DirFileEntryAdapterIterator.cs" />
+    <Compile Include="jcifs\smb\DirFileEntryEnumIterator1.cs" />
+    <Compile Include="jcifs\smb\DirFileEntryEnumIterator2.cs" />
+    <Compile Include="jcifs\smb\DirFileEntryEnumIteratorBase.cs" />
+    <Compile Include="jcifs\smb\DosError.cs" />
+    <Compile Include="jcifs\smb\DosFileFilter.cs" />
+    <Compile Include="jcifs\smb\FileEntry.cs" />
+    <Compile Include="jcifs\smb\FileEntryAdapterIterator.cs" />
+    <Compile Include="jcifs\smb\Handler.cs" />
+    <Compile Include="jcifs\smb\MIEName.cs" />
+    <Compile Include="jcifs\smb\NetServerEnumIterator.cs" />
+    <Compile Include="jcifs\smb\NetServerFileEntryAdapterIterator.cs" />
+    <Compile Include="jcifs\smb\NtlmAuthenticator.cs" />
+    <Compile Include="jcifs\smb\NtlmChallenge.cs" />
+    <Compile Include="jcifs\smb\NtlmContext.cs" />
+    <Compile Include="jcifs\smb\NtlmNtHashAuthenticator.cs" />
+    <Compile Include="jcifs\smb\NtlmPasswordAuthentication.cs" />
+    <Compile Include="jcifs\smb\NtlmPasswordAuthenticator.cs" />
+    <Compile Include="jcifs\smb\NtlmUtil.cs" />
+    <Compile Include="jcifs\smb\NtStatus.cs" />
+    <Compile Include="jcifs\smb\RequestParam.cs" />
+    <Compile Include="jcifs\smb\SecurityBlob.cs" />
+    <Compile Include="jcifs\smb\SessionSetupHandler.cs" />
+    <Compile Include="jcifs\smb\ShareEnumIterator.cs" />
+    <Compile Include="jcifs\smb\SID.cs" />
+    <Compile Include="jcifs\smb\SIDCacheImpl.cs" />
+    <Compile Include="jcifs\smb\SmbAuthException.cs" />
+    <Compile Include="jcifs\smb\SmbCopyUtil.cs" />
+    <Compile Include="jcifs\smb\SmbEndOfFileException.cs" />
+    <Compile Include="jcifs\smb\SmbEnumerationUtil.cs" />
+    <Compile Include="jcifs\smb\SmbException.cs" />
+    <Compile Include="jcifs\smb\SmbFile.cs" />
+    <Compile Include="jcifs\smb\SmbFileFilter.cs" />
+    <Compile Include="jcifs\smb\SmbFileHandleImpl.cs" />
+    <Compile Include="jcifs\smb\SmbFileInputStream.cs" />
+    <Compile Include="jcifs\smb\SmbFilenameFilter.cs" />
+    <Compile Include="jcifs\smb\SmbFileOutputStream.cs" />
+    <Compile Include="jcifs\smb\SmbNamedPipe.cs" />
+    <Compile Include="jcifs\smb\SmbPipeHandleImpl.cs" />
+    <Compile Include="jcifs\smb\SmbPipeHandleInternal.cs" />
+    <Compile Include="jcifs\smb\SmbPipeInputStream.cs" />
+    <Compile Include="jcifs\smb\SmbPipeOutputStream.cs" />
+    <Compile Include="jcifs\smb\SMBProtocolDowngradeException.cs" />
+    <Compile Include="jcifs\smb\SmbRandomAccessFile.cs" />
+    <Compile Include="jcifs\smb\SmbRenewableCredentials.cs" />
+    <Compile Include="jcifs\smb\SmbResourceLocatorImpl.cs" />
+    <Compile Include="jcifs\smb\SmbResourceLocatorInternal.cs" />
+    <Compile Include="jcifs\smb\SmbSessionImpl.cs" />
+    <Compile Include="jcifs\smb\SmbSessionInternal.cs" />
+    <Compile Include="jcifs\smb\SMBSignatureValidationException.cs" />
+    <Compile Include="jcifs\smb\SmbTransportImpl.cs" />
+    <Compile Include="jcifs\smb\SmbTransportInternal.cs" />
+    <Compile Include="jcifs\smb\SmbTransportPoolImpl.cs" />
+    <Compile Include="jcifs\smb\SmbTreeConnection.cs" />
+    <Compile Include="jcifs\smb\SmbTreeConnectionTrace.cs" />
+    <Compile Include="jcifs\smb\SmbTreeHandleImpl.cs" />
+    <Compile Include="jcifs\smb\SmbTreeHandleInternal.cs" />
+    <Compile Include="jcifs\smb\SmbTreeImpl.cs" />
+    <Compile Include="jcifs\smb\SmbTreeInternal.cs" />
+    <Compile Include="jcifs\smb\SmbUnsupportedOperationException.cs" />
+    <Compile Include="jcifs\smb\SmbWatchHandleImpl.cs" />
+    <Compile Include="jcifs\smb\SpnegoContext.cs" />
+    <Compile Include="jcifs\smb\SSPContext.cs" />
+    <Compile Include="jcifs\smb\StaticJAASConfiguration.cs" />
+    <Compile Include="jcifs\smb\WinError.cs" />
+    <Compile Include="jcifs\spnego\NegTokenInit.cs" />
+    <Compile Include="jcifs\spnego\NegTokenTarg.cs" />
+    <Compile Include="jcifs\spnego\SpnegoConstants.cs" />
+    <Compile Include="jcifs\spnego\SpnegoException.cs" />
+    <Compile Include="jcifs\spnego\SpnegoToken.cs" />
+    <Compile Include="jcifs\util\ByteEncodable.cs" />
+    <Compile Include="jcifs\util\Crypto.cs" />
+    <Compile Include="jcifs\util\Encdec.cs" />
+    <Compile Include="jcifs\util\Hexdump.cs" />
+    <Compile Include="jcifs\util\HMACT64.cs" />
+    <Compile Include="jcifs\util\Strings.cs" />
+    <Compile Include="jcifs\util\transport\ConnectionTimeoutException.cs" />
+    <Compile Include="jcifs\util\transport\Message.cs" />
+    <Compile Include="jcifs\util\transport\Request.cs" />
+    <Compile Include="jcifs\util\transport\RequestTimeoutException.cs" />
+    <Compile Include="jcifs\util\transport\Response.cs" />
+    <Compile Include="jcifs\util\transport\Transport.cs" />
+    <Compile Include="jcifs\util\transport\TransportException.cs" />
+    <Compile Include="lib\AutoCloseable.cs" />
+    <Compile Include="lib\ext\ArrayEx.cs" />
+    <Compile Include="lib\ext\CollectionEx.cs" />
+    <Compile Include="lib\ext\Collections.cs" />
+    <Compile Include="lib\ext\MapEx.cs" />
+    <Compile Include="lib\ext\Properties.cs" />
+    <Compile Include="lib\ext\StringTokenizer.cs" />
+    <Compile Include="lib\io\InputStream.cs" />
+    <Compile Include="lib\io\InputStreamToStream.cs" />
+    <Compile Include="lib\io\OutputStream.cs" />
+    <Compile Include="lib\io\OutputStreamToStream.cs" />
+    <Compile Include="lib\log\Logger.cs" />
+    <Compile Include="lib\log\LoggerFactory.cs" />
+    <Compile Include="lib\log\SimpleLogger.cs" />
+    <Compile Include="lib\security\bc\ciphers\BcDesEcbNoPaddingCipher.cs" />
+    <Compile Include="lib\security\bc\ciphers\BcRc4Cipher.cs" />
+    <Compile Include="lib\security\bc\digests\AbstractBcMessageDigest.cs" />
+    <Compile Include="lib\security\bc\digests\BcMessageDigestMd4.cs" />
+    <Compile Include="lib\security\bc\digests\BcMessageDigestMd5.cs" />
+    <Compile Include="lib\security\bc\digests\BcMessageDigestSha1.cs" />
+    <Compile Include="lib\security\bc\digests\BcMessageDigestSha256.cs" />
+    <Compile Include="lib\security\bc\digests\BcMessageDigestSha512.cs" />
+    <Compile Include="lib\security\Cipher.cs" />
+    <Compile Include="lib\security\MessageDigest.cs" />
+    <Compile Include="lib\security\Principal.cs" />
+    <Compile Include="lib\security\Subject.cs" />
+    <Compile Include="lib\socket\InterruptedIOException.cs" />
+    <Compile Include="lib\socket\SocketEx.cs" />
+    <Compile Include="lib\socket\SocketExceptionEx.cs" />
+    <Compile Include="lib\socket\SocketInputStream.cs" />
+    <Compile Include="lib\socket\SocketOutputStream.cs" />
+    <Compile Include="lib\socket\SocketStream.cs" />
+    <Compile Include="lib\socket\UnknownHostException.cs" />
+    <Compile Include="lib\threading\Callable.cs" />
+    <Compile Include="lib\Cloneable.cs" />
+    <Compile Include="lib\Enumeration.cs" />
+    <Compile Include="lib\EnumSet.cs" />
+    <Compile Include="lib\ext\RuntimeHelp.cs" />
+    <Compile Include="lib\ext\StringExt.cs" />
+    <Compile Include="lib\IEnum.cs" />
+    <Compile Include="lib\io\StreamToInputStream.cs" />
+    <Compile Include="lib\threading\AtomicBoolean.cs" />
+    <Compile Include="lib\threading\AtomicInteger.cs" />
+    <Compile Include="lib\threading\AtomicLong.cs" />
+    <Compile Include="lib\threading\Runnable.cs" />
+    <Compile Include="lib\threading\Semaphore.cs" />
+    <Compile Include="lib\threading\Utils.cs" />
+    <Compile Include="lib\URL.cs" />
+    <Compile Include="lib\URLConnection.cs" />
+    <Compile Include="lib\URLStreamHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\cifs_ng.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.NetCore">
+      <Version>1.8.8</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.13</Version>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

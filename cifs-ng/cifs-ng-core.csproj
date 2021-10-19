@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>cifs_ng</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="jcifs\https\**" />
+    <Compile Remove="jcifs\http\**" />
+    <Compile Remove="jcifs\pac\**" />
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="jcifs\https\**" />
+    <EmbeddedResource Remove="jcifs\http\**" />
+    <EmbeddedResource Remove="jcifs\pac\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="jcifs\https\**" />
+    <None Remove="jcifs\http\**" />
+    <None Remove="jcifs\pac\**" />
+    <None Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="jcifs\smb\JAASAuthenticator.cs" />
+    <Compile Remove="jcifs\smb\Kerb5Authenticator.cs" />
+    <Compile Remove="jcifs\smb\Kerb5Context.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.NetCore" Version="1.8.8" />
+  </ItemGroup>
+
+</Project>
