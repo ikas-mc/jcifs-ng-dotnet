@@ -4,7 +4,23 @@ a port of jcifs-ng to .net
 support uwp and .net core
 
 
+``` c#
+var props = new Properties();
+props.setProperty("jcifs.smb.client.enableSMB2", "true");
+props.setProperty("jcifs.smb.client.disableSMB1", "true");
+var tmp = new BaseContext(new PropertyConfiguration(props));
+var ctx = tmp.withCredentials(new NtlmPasswordAuthenticator(null, "username", "password"));
+
+var url = "smb://192.168.10.1";
+var server = new SmbFile(url, ctx);
+var shares = server.list();
+foreach (var share in shares) {
+	Debug.WriteLine(share);
+}
 ```
+
+
+``` java
 //code removed
 http
 https
@@ -27,6 +43,7 @@ Latest stable release:
     <version>2.1.6</version>
 </dependency>
 ```
+
 
 The 2.0 series is now discontinued.
 
