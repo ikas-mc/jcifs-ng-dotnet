@@ -1,6 +1,6 @@
 # jcifs-ng for dotnet
 
-a port of jcifs-ng to .net
+a port of jcifs-ng to .net   
 support uwp and .net core
 
 
