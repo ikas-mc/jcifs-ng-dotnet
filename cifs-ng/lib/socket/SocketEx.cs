@@ -10,15 +10,15 @@ using System.Threading;
 namespace cifs_ng.lib.socket {
 	public class SocketEx : Socket {
 
-		private SocketEx(SocketType socketType, ProtocolType protocolType) : base(AddressFamily.InterNetwork, socketType, protocolType) {
+		private SocketEx(AddressFamily addressFamily,SocketType socketType, ProtocolType protocolType) : base(addressFamily, socketType, protocolType) {
 		}
 
-		public static SocketEx ofTcpSocket() {
-			return new SocketEx(SocketType.Stream, ProtocolType.Tcp);
+		public static SocketEx ofTcpSocket(AddressFamily family) {
+			return new SocketEx(family,SocketType.Stream, ProtocolType.Tcp);
 		}
 
-		public static SocketEx ofUdpSocket() {
-			return new SocketEx(SocketType.Dgram, ProtocolType.Udp);
+		public static SocketEx ofUdpSocket(AddressFamily family) {
+			return new SocketEx(family, SocketType.Dgram, ProtocolType.Udp);
 		}
 
 		public void Connect2(IPEndPoint endPoint, int timeOut) {

@@ -3,6 +3,7 @@ using CIFSContext = jcifs.CIFSContext;
 using Configuration = jcifs.Configuration;
 using RequestWithFileId = jcifs.@internal.smb2.RequestWithFileId;
 using jcifs.@internal.smb2;
+using jcifs.util;
 using Smb2Constants = jcifs.@internal.smb2.Smb2Constants;
 using SMBUtil = jcifs.@internal.util.SMBUtil;
 
@@ -52,6 +53,7 @@ namespace jcifs.@internal.smb2.io {
 		private int minimumCount;
 		private int channel;
 		private int remainingBytes;
+
 
 
 		/// <param name="config"> </param>
@@ -129,6 +131,9 @@ namespace jcifs.@internal.smb2.io {
 			return size8(Smb2Constants.SMB2_HEADER_LENGTH + 49);
 		}
 
+		public override int getCreditCost() {
+			return CreditUtil.calcCreditCost(this.readLength);
+		}
 
 		/// <summary>
 		/// {@inheritDoc}

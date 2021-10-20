@@ -383,7 +383,9 @@ namespace jcifs.smb {
 			Name calledName = new Name(tc.getConfig(), this.address.firstCalledName(), 0x20, null);
 			do
 			{
-				this.socket = SocketEx.ofTcpSocket();
+				var server = new IPEndPoint(this.address.toInetAddress(), 139);
+				this.socket = SocketEx.ofTcpSocket(server.AddressFamily);
+
 				this.socket.SetSocketOption(SocketOptionLevel.Socket,SocketOptionName.ReceiveTimeout,tc.getConfig().getSoTimeout());
 				//this.socket.ReceiveTimeout=(tc.getConfig().getSoTimeout());
 				if (this.localAddr != null) {
@@ -392,7 +394,7 @@ namespace jcifs.smb {
 
 				try
 				{
-					this.socket.Connect(new IPEndPoint(this.address.toInetAddress(), 139), tc.getConfig().getConnTimeout());
+					this.socket.Connect(server,tc.getConfig().getConnTimeout());
 					this.@out = this.socket.GetOutputStream();
 					this.@in = this.socket.GetInputStream();
 				}
@@ -462,12 +464,14 @@ namespace jcifs.smb {
 						prt = SmbConstants.DEFAULT_PORT; // 445
 					}
 
-					this.socket = SocketEx.ofTcpSocket();
+					var server = new IPEndPoint(this.address.toInetAddress(), prt);
+					this.socket = SocketEx.ofTcpSocket(server.AddressFamily);
+
 					this.socket.SetSocketOption(SocketOptionLevel.Socket,SocketOptionName.ReceiveTimeout,this.transportContext.getConfig().getSoTimeout());
 					if (this.localAddr != null) {
 						this.socket.Bind(new IPEndPoint(this.localAddr, this.localPort));
 					}
-					this.socket.Connect(new IPEndPoint(this.address.toInetAddress(), prt), this.transportContext.getConfig().getConnTimeout());
+					this.socket.Connect(server);
 					//this.socket.ReceiveTimeout=(this.transportContext.getConfig().getSoTimeout());
 
 					this.@out = this.socket.GetOutputStream();
@@ -790,7 +794,16 @@ namespace jcifs.smb {
 
 		/// throws java.io.IOException
 		protected internal override long makeKey(Request request) {
-			long m = this.mid.IncrementValueAndReturn() - 1;
+			//TODO 1 Credit
+			var creditsNeeded=request.getCreditCost();
+			//TODO set Credit Charge
+			if (request is ServerMessageBlock2 serverMessageBlock2) {
+				if (negotiated?.getSelectedDialect().atLeast(DialectVersion.SMB210) == true) {
+					serverMessageBlock2.setCreditCharge(creditsNeeded);
+				}
+			}
+			var m= this.mid.AddDeltaAndReturnPreviousValue(creditsNeeded);
+			//long m = this.mid.IncrementValueAndReturn() - 1;
 			if (!this.smb2) {
 				m = (m % 32000);
 			}
@@ -872,7 +885,9 @@ namespace jcifs.smb {
 				// synchronize around encode and write so that the ordering for SMB1 signing can be maintained
 				lock (this.outLock) {
 					int n = smb.encode(buffer, 4);
-					Encdec.enc_uint32be(n & 0xFFFF, buffer, 0); // 4 byte session message header
+					//TODO remove message length limit
+					Encdec.enc_uint32be(n , buffer, 0); 
+					//Encdec.enc_uint32be(n & 0xFFFF, buffer, 0); // 4 byte session message header
 					if (log.isTraceEnabled()) {
 						do {
 							log.trace(smb.ToString());
@@ -926,14 +941,17 @@ namespace jcifs.smb {
 				CommonServerMessageBlockRequest last = null;
 				CommonServerMessageBlockRequest chain = curHead;
 				while (chain != null) {
-					n++;
+					//n++;
 					int size = chain.size();
 					int cost = chain.getCreditCost();
+					n += cost;
 					CommonServerMessageBlockRequest next = chain.getNext();
 					if (log.isTraceEnabled()) {
 						log.trace(($"{chain.GetType().FullName} costs {cost} avail {this.credits.Permits()} ({this.name})"));
 					}
-					if ((next == null || chain.allowChain(next)) && totalSize + size < maxSize && this.credits.tryAcquire(cost)) {
+					//TODO credits.tryAcquire(cost)
+					//TODO 1 Credits
+					if ((next == null || chain.allowChain(next)) && totalSize + size < maxSize && this.credits.Permits() > n) {
 						totalSize += size;
 						last = chain;
 						chain = next;
@@ -985,7 +1003,8 @@ namespace jcifs.smb {
 					}
 				}
 
-				int reqCredits = Math.Max(1, this.desiredCredits - this.credits.Permits() - n + 1);
+				//TODO 1 Credits
+				int reqCredits = Math.Max(n, this.desiredCredits - this.credits.Permits() - n + 1);
 				if (log.isTraceEnabled()) {
 					log.trace("Request credits " + reqCredits);
 				}

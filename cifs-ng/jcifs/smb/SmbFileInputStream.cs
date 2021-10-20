@@ -139,7 +139,10 @@ namespace jcifs.smb {
 
 			if (th.hasCapability(SmbConstants.CAP_LARGE_READX)) {
 				this.largeReadX = true;
-				this.readSizeFile = Math.Min(th.getConfig().getReceiveBufferSize() - 70, th.areSignaturesActive() ? 0xFFFF - 70 : 0xFFFFFF - 70);
+				//TODO max size 0xFFFF
+				//TODO 
+				this.readSizeFile = Math.Min(th.getConfig().getReceiveBufferSize() - 70,  0xFFFF - 70 );
+				//this.readSizeFile = Math.Min(th.getConfig().getReceiveBufferSize() - 70, th.areSignaturesActive() ? 0xFFFF - 70 : 0xFFFFFF - 70);
 				log.debug("Enabling LARGE_READX with " + this.readSizeFile);
 			}
 			else {
@@ -369,6 +372,7 @@ namespace jcifs.smb {
 						}
 						else if (this.largeReadX) {
 							request.setMaxCount(r & 0xFFFF);
+							request.setMinCount(r & 0xFFFF);
 							request.setOpenTimeout((r >> 16) & 0xFFFF);
 						}
 						th.send(request, response, RequestParam.NO_RETRY);

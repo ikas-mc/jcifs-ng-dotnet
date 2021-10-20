@@ -475,6 +475,7 @@
     <Compile Include="jcifs\spnego\SpnegoException.cs" />
     <Compile Include="jcifs\spnego\SpnegoToken.cs" />
     <Compile Include="jcifs\util\ByteEncodable.cs" />
+    <Compile Include="jcifs\util\CreditUtil.cs" />
     <Compile Include="jcifs\util\Crypto.cs" />
     <Compile Include="jcifs\util\Encdec.cs" />
     <Compile Include="jcifs\util\Hexdump.cs" />

@@ -1,9 +1,4 @@
 using System;
-using CIFSContext = jcifs.CIFSContext;
-using Configuration = jcifs.Configuration;
-using CommonServerMessageBlockRequest = jcifs.@internal.CommonServerMessageBlockRequest;
-using CommonServerMessageBlockResponse = jcifs.@internal.CommonServerMessageBlockResponse;
-using jcifs.@internal;
 using jcifs.util.transport;
 
 /*
@@ -32,7 +27,7 @@ namespace jcifs.@internal.smb2 {
 	/// @param <T>
 	///            request type
 	///  </param>
-	public abstract class ServerMessageBlock2Request <T> : ServerMessageBlock2, CommonServerMessageBlockRequest, Request<T> where T : ServerMessageBlock2Response {
+	public abstract class ServerMessageBlock2Request<T> : ServerMessageBlock2, CommonServerMessageBlockRequest, Request<T> where T : ServerMessageBlock2Response {
 		public abstract int size();
 
 		private T response;
@@ -40,7 +35,7 @@ namespace jcifs.@internal.smb2 {
 
 
 		/// <param name="config"> </param>
-		protected  ServerMessageBlock2Request(Configuration config) : base(config) {
+		protected ServerMessageBlock2Request(Configuration config) : base(config) {
 		}
 
 
@@ -50,37 +45,33 @@ namespace jcifs.@internal.smb2 {
 		}
 
 
-		public  virtual CommonServerMessageBlock ignoreDisconnect() {
+		public virtual CommonServerMessageBlock ignoreDisconnect() {
 			return this;
 		}
 
 
 		//TODO type  @Override public ServerMessageBlock2Request<?> getNext()
-		protected  override ServerMessageBlock2 getNext() {
-		//TODO type  return (ServerMessageBlock2Request<?>) super.getNext();
+		protected override ServerMessageBlock2 getNext() {
+			//TODO type  return (ServerMessageBlock2Request<?>) super.getNext();
 			//TODO 1 type
 			return (ServerMessageBlock2) base.getNext();
 		}
-		
-		T Request<T>.getResponse()
-		{
+
+		T Request<T>.getResponse() {
 			return (T) this.getResponse();
 		}
 
 		//TODO 
-		CommonServerMessageBlockRequest CommonServerMessageBlockRequest.getNext()
-		{
-			return (CommonServerMessageBlockRequest)getNext();
+		CommonServerMessageBlockRequest CommonServerMessageBlockRequest.getNext() {
+			return (CommonServerMessageBlockRequest) getNext();
 		}
 
-		Response Request.getResponse()
-		{
+		Response Request.getResponse() {
 			return getResponse();
 		}
-		
-		Request Request.getNext()
-		{
-			return (Request)getNext();
+
+		Request Request.getNext() {
+			return (Request) getNext();
 		}
 
 		/// <summary>
@@ -91,7 +82,7 @@ namespace jcifs.@internal.smb2 {
 			return false;
 		}
 
-	
+
 
 		/// <summary>
 		/// {@inheritDoc}
@@ -125,14 +116,14 @@ namespace jcifs.@internal.smb2 {
 		/// </summary>
 		/// <seealso cref= jcifs.internal.CommonServerMessageBlockRequest#split() </seealso>
 		public virtual CommonServerMessageBlockRequest split() {
-		//TODO type  ServerMessageBlock2Request<?> n = getNext();
+			//TODO type  ServerMessageBlock2Request<?> n = getNext();
 			//TODO 1 type
 			var n = getNext();
 			if (n != null) {
 				setNext(null);
 				n.clearFlags(SMB2_FLAGS_RELATED_OPERATIONS);
 			}
-			return (CommonServerMessageBlockRequest)n;
+			return (CommonServerMessageBlockRequest) n;
 		}
 
 
@@ -189,11 +180,11 @@ namespace jcifs.@internal.smb2 {
 			setResponse(resp);
 
 			ServerMessageBlock2 n = getNext();
-			
-		//TODO type  if (n instanceof ServerMessageBlock2Request<?>)
+
+			//TODO type  if (n instanceof ServerMessageBlock2Request<?>)
 			//TODO 1 check type
 			if (n is Request<CommonServerMessageBlockResponse> request) {
-		//TODO type  resp.setNext(((ServerMessageBlock2Request<?>) n).initResponse(tc));
+				//TODO type  resp.setNext(((ServerMessageBlock2Request<?>) n).initResponse(tc));
 				//TODO
 				if (!(request.initResponse(tc) is ServerMessageBlock2Response newResponse)) {
 					throw new ArgumentException("response config error");
@@ -222,24 +213,24 @@ namespace jcifs.@internal.smb2 {
 			int exp = size();
 			int actual = getLength();
 			if (exp != actual) {
-				throw new System.InvalidOperationException(string.Format("Wrong size calculation have {0:D} expect {1:D}", exp, actual));
+				throw new InvalidOperationException(string.Format("Wrong size calculation have {0:D} expect {1:D}", exp, actual));
 			}
 			return len;
 		}
-
+		
 
 		/// <summary>
 		/// {@inheritDoc}
 		/// </summary>
 		/// <seealso cref= jcifs.internal.smb2.ServerMessageBlock2#getResponse() </seealso>
-		public  override CommonServerMessageBlockResponse getResponse() {
+		public override CommonServerMessageBlockResponse getResponse() {
 			return this.response;
 		}
 
 
 		/// <param name="config2">
 		/// @return </param>
-		protected  abstract T createResponse(CIFSContext tc, ServerMessageBlock2Request<T> req);
+		protected abstract T createResponse(CIFSContext tc, ServerMessageBlock2Request<T> req);
 
 
 		/// 
@@ -249,7 +240,7 @@ namespace jcifs.@internal.smb2 {
 		/// <seealso cref= jcifs.internal.smb2.ServerMessageBlock2#setResponse(jcifs.internal.CommonServerMessageBlockResponse) </seealso>
 		public override void setResponse(CommonServerMessageBlockResponse msg) {
 			if (msg != null && !(msg is ServerMessageBlock2)) {
-				throw new System.ArgumentException("Incompatible response");
+				throw new ArgumentException("Incompatible response");
 			}
 			this.response = (T) msg;
 		}

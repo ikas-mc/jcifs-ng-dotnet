@@ -5,6 +5,7 @@ using CIFSContext = jcifs.CIFSContext;
 using Configuration = jcifs.Configuration;
 using RequestWithFileId = jcifs.@internal.smb2.RequestWithFileId;
 using jcifs.@internal.smb2;
+using jcifs.util;
 using Smb2Constants = jcifs.@internal.smb2.Smb2Constants;
 using SMBUtil = jcifs.@internal.util.SMBUtil;
 
@@ -72,7 +73,6 @@ namespace jcifs.@internal.smb2.info {
 		private int outputBufferLength;
 		private string fileName;
 
-
 		/// 
 		/// <param name="config"> </param>
 		public Smb2QueryDirectoryRequest(Configuration config) : this(config, Smb2Constants.UNSPECIFIED_FILEID) {
@@ -82,7 +82,8 @@ namespace jcifs.@internal.smb2.info {
 		/// <param name="config"> </param>
 		/// <param name="fileId"> </param>
 		public Smb2QueryDirectoryRequest(Configuration config, byte[] fileId) : base(config, SMB2_QUERY_DIRECTORY) {
-			this.outputBufferLength = (config.getMaximumBufferSize() - Smb2QueryDirectoryResponse.OVERHEAD) & ~0x7;
+			//TODO
+			this.outputBufferLength = (Math.Min(config.getMaximumBufferSize(),CreditUtil.SINGLE_CREDIT_SIZE) - Smb2QueryDirectoryResponse.OVERHEAD) & ~0x7;
 			this.fileId = fileId;
 		}
 
@@ -142,6 +143,10 @@ namespace jcifs.@internal.smb2.info {
 			return size8(Smb2Constants.SMB2_HEADER_LENGTH + 32 + (this.fileName!=null ? 2 * this.fileName.Length : 0));
 		}
 
+		public override int getCreditCost() {
+			//TODO 
+			return 1;
+		}
 
 		/// <summary>
 		/// {@inheritDoc}

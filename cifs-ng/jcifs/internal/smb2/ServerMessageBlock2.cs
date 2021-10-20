@@ -213,7 +213,15 @@ namespace jcifs.@internal.smb2 {
 		public virtual int getCreditCharge() {
 			return this.creditCharge;
 		}
-
+		
+		/// <summary>
+		/// CreditCharge (2 bytes): In the SMB 2.0.2 dialect, this field MUST NOT be used and MUST be
+		/// reserved. The sender MUST set this to 0, and the receiver MUST ignore it. In all other dialects, this
+		/// field indicates the number of credits that this request consumes.
+		/// </summary>
+		public virtual void setCreditCharge(int value) {
+			 this.creditCharge=value;
+		}
 
 		public virtual void retainPayload() {
 			this.retainPayloadField = true;
@@ -545,6 +553,8 @@ namespace jcifs.@internal.smb2 {
 			return bufferIndex - start;
 		}
 
+		
+		
 		protected  virtual int writeHeaderWireFormat(byte[] dst, int dstIndex) {
 			Array.Copy(SMBUtil.SMB2_HEADER, 0, dst, dstIndex, SMBUtil.SMB2_HEADER.Length);
 

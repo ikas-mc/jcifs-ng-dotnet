@@ -129,6 +129,7 @@ namespace jcifs.config {
 
 			this.transactionBufferSize = Config.getInt(p, "jcifs.smb.client.transaction_buf_size", 0xFFFF) - 512;
 			this.bufferCacheSize = Config.getInt(p, "jcifs.smb.maxBuffers", 16);
+			this.maximumBufferSize= Config.getInt(p, "jcifs.smb.maximumBufferSize", 0x10000);
 
 			this.smbListSize = Config.getInt(p, "jcifs.smb.client.listSize", 65535);
 			this.smbListCount = Config.getInt(p, "jcifs.smb.client.listCount", 200);

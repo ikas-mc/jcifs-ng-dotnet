@@ -341,10 +341,11 @@ namespace jcifs.netbios {
 			// If socket is still good, the new closeTimeout will
 			// be ignored; see tryClose comment.
 			if (this.socket == null) {
-				this.socket = SocketEx.ofUdpSocket();
+				var ip = new IPEndPoint(this.laddr, this.lport);
+				this.socket = SocketEx.ofUdpSocket(ip.AddressFamily);
 				socket.SetSocketOption(SocketOptionLevel.Socket,SocketOptionName.ReceiveTimeout,this.closeTimeout);
 				socket.SetSocketOption(SocketOptionLevel.Socket,SocketOptionName.Broadcast,this.closeTimeout);
-				socket.Bind(new IPEndPoint(this.laddr,this.lport));
+				socket.Bind(ip);
 				this.socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
 				//socket.Connect(this.baddr, NAME_SERVICE_UDP_PORT);
 				this.thread = new Thread(this.run);
