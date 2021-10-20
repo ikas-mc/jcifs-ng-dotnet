@@ -60,7 +60,7 @@ namespace cifs_ng.lib.threading {
 
 		public bool tryAcquire(int s) {
 			try {
-				return nonfairTryAcquireShared(1) >= 0;
+				return nonfairTryAcquireShared(s) >= 0;
 			}
 			catch (Exception) {
 				return false;
